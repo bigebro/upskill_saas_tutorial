@@ -2,7 +2,7 @@
 //Document ready
 $(document).on('turbolinks:load', function(){
   var theForm = $('#pro_form');
-  var submitBtn = $('#form-submit-btn');
+  var submitBtn = $('#form-signup-btn');
  
   //Set Stripe public key
   Stripe.setPublishableKey( $('meta[name="stripe-key"]').attr('content') );
@@ -42,7 +42,7 @@ $(document).on('turbolinks:load', function(){
     
     if (error) {
       //If there are card errors, don't send to Stripe.
-      submitBtn.prop('disabled', false).val('Sign Up');
+      submitBtn.prop('disabled', false).val("Sign Up");
     } else {
       //Send the card info to Stripe.
       Stripe.createToken({
@@ -61,6 +61,8 @@ $(document).on('turbolinks:load', function(){
       exp_month: expMonth,
       exp_year: expYear
     }, stripeResponseHandler);
+    
+     return false;
   });
   
   //Stripe will return a card token.
@@ -77,4 +79,4 @@ $(document).on('turbolinks:load', function(){
 
   
 
-})
+});
